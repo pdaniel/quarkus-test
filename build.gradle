@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:quarkus-amazon-services-bom:${quarkusPlatformVersion}")
+//    implementation 'io.quarkus:quarkus-amazon-lambda'
+    implementation 'io.quarkus:quarkus-funqy-amazon-lambda'
+//    implementation 'io.quarkus:quarkus-funqy-http'
+    implementation 'io.quarkus:quarkus-mongodb-client'
+//    implementation 'io.quarkus:quarkus-amazon-lambda-http'
+//    implementation 'io.quarkus:quarkus-container-image-docker'
+    implementation 'io.quarkus:quarkus-mongodb-panache'
+    implementation 'io.quarkus:quarkus-resteasy-reactive'
+    implementation 'io.quarkus:quarkus-logging-gelf'
+    implementation 'io.quarkiverse.amazonservices:quarkus-amazon-sns'
+    implementation 'io.quarkus:quarkus-cache'
+    implementation 'io.quarkus:quarkus-container-image-jib'
+    implementation 'io.quarkiverse.amazonservices:quarkus-amazon-sqs'
+    implementation 'io.quarkus:quarkus-arc'
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.rest-assured:rest-assured'
+}
+
+group 'io.onlineservice'
+version '1.0.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+test {
+    systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+}
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
